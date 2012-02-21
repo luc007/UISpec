@@ -24,6 +24,27 @@
 	return [UIQuery withViews:views className:className];
 }
 
+-(UIQuery *)scrollUp:(int)numberOfRows {
+	//NSLog(@"scrollUp %d", numberOfRows);
+   	UITableView *table = self;
+   	NSArray *indexPathsForVisibleRows = [table indexPathsForVisibleRows];
+   	NSArray *rowIndexPathList = [self rowIndexPathList];
+
+   	//NSLog(@"indexPathsForVisibleRows = %@",indexPathsForVisibleRows);
+   	NSIndexPath *indexPathForFirstVisibleRow = [indexPathsForVisibleRows firstObject];
+
+   	int indexOfFirstVisibleRow = [rowIndexPathListindexOfObject:indexPathForFirstVisibleRow];
+
+   	//NSLog(@"indexOfLastVisibleRow = %d", indexOfFirstVisibleRow);
+   	int scrollToIndex = indexOfFirstVisibleRow - numberOfRows;
+   	if (scrollToIndex >= rowIndexPathList.count) {
+       		scrollToIndex = rowIndexPathList.count - 1 ;
+    	}
+   	NSIndexPath *scrollToIndexPath = [rowIndexPathList objectAtIndex:scrollToIndex];
+   	[table scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        return [UIQuery withViews:views className:className];
+}
+
 -(NSArray *)rowIndexPathList {
 	UITableView *table = (UITableView *)self;
 	NSMutableArray *rowIndexPathList = [NSMutableArray array];
