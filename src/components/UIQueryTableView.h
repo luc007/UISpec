@@ -14,5 +14,5 @@
 
 -(UIQuery *)scrollDown:(int)numberOfRows;
 -(NSArray *)rowIndexPathList;
-
+-(UIQuery *)scrollUp:(int)numberOfRows;
 @end
